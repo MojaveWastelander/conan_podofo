@@ -38,9 +38,18 @@ include(../conanbuildinfo.cmake)
 conan_basic_setup()
 '''   
         folder_name = "podofo-%s" % self.version
+        # add conan dependencies
         replace_in_file("%s/CMakeLists.txt" % folder_name, "PROJECT(PoDoFo)", replace_lines)
+        
+        # custom libcryto findlibcryto is based on looking for OpenSSL first
+        replace_in_file("%s/CMakeLists.txt" % folder_name, "FIND_PACKAGE(OpenSSL)", "")
+        replace_in_file("%s/CMakeLists.txt" % folder_name, "FIND_PACKAGE(LIBCRYPTO)", """FIND_PACKAGE(OpenSSL)
+FIND_PACKAGE(LIBCRYPTO)""")
+        
+        # update search path with conan/cmake paths as well
         replace_in_file("%s/CMakeLists.txt" % folder_name, 'SET(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")', 'SET(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules" ${CMAKE_MODULE_PATH})')
-        # temp fix
+
+        # temp fix for msvc
         replace_in_file("%s/CMakeLists.txt" % folder_name, 'CHECK_TYPE_SIZE("__uint64"  SZ___UINT64)', 'CHECK_TYPE_SIZE("__int64"  SZ___UINT64)')
         
         cmake = CMake(self.settings)
