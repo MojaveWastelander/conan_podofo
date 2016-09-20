@@ -12,7 +12,7 @@ class PoDoFoConan(ConanFile):
     default_options = "enable_optional=False"
     exports = ["./cmake*"]
     license = "GPL2 or later"
-    url = "http://podofo.sourceforge.net/index.html"
+    url = "https://github.com/MojaveWastelander/conan_podofo"
     
     def source(self):
         zip_file = "podofo-%s.tar.gz" % self.version
