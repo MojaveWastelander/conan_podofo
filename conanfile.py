@@ -51,7 +51,7 @@ conan_basic_setup()
         shutil.rmtree("./%s/cmake" % folder_name)
         shutil.copytree("cmake", "./%s/cmake" % folder_name)
         
-        self.run('cmake -DPODOFO_BUILD_LIB_ONLY %s/%s %s' % (self.conanfile_directory, folder_name, cmake.command_line))
+        self.run('cmake -DPODOFO_BUILD_LIB_ONLY=TRUE %s/%s %s' % (self.conanfile_directory, folder_name, cmake.command_line))
         self.run("cmake --build . %s" % cmake.build_config)
 
 
