@@ -1,0 +1,23 @@
+# - Find LIBJPEG
+# Find the native LIBJPEG includes and library
+# This module defines
+#  LIBJPEG_INCLUDE_DIR, where to find jpeglib.h, etc.
+#  LIBJPEG_LIBRARIES, the libraries needed to use LIBJPEG.
+#  LIBJPEG_FOUND, If false, do not try to use LIBJPEG.
+# also defined, but not for general use are
+#  LIBJPEG_LIBRARY, where to find the LIBJPEG library.
+
+FIND_PATH(LIBJPEG_INCLUDE_DIR jpeglib.h )
+
+find_path(LIBJPEG_INCLUDE_DIR NAMES jpeglib.h PATHS ${CONAN_INCLUDE_DIRS_LIBJPEG-TURBO})
+find_library(LIBJPEG_LIBRARY NAMES ${CONAN_LIBS_LIBJPEG-TURBO} PATHS ${CONAN_LIB_DIRS_LIBJPEG-TURBO})
+
+MESSAGE("** LIBJPEG ALREADY FOUND BY CONAN!")
+SET(LIBJPEG_FOUND TRUE)
+MESSAGE("** FOUND LIBJPEG:  ${LIBJPEG_LIBRARY}")
+MESSAGE("** FOUND LIBJPEG INCLUDE:  ${LIBJPEG_INCLUDE_DIR}")
+
+set(LIBJPEG_INCLUDE_DIRS ${ZLIB_INCLUDE_DIR})
+set(LIBJPEG_LIBRARIES ${ZLIB_LIBRARY})
+
+mark_as_advanced(ZLIB_LIBRARY ZLIB_INCLUDE_DIR)

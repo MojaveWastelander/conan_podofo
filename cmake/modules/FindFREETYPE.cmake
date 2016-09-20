@@ -1,0 +1,25 @@
+#
+# Find the native FREETYPE includes and library
+#
+
+# This module defines
+# FREETYPE_INCLUDE_DIR, where to find ft2build.h, ftheader.h, ...
+# FREETYPE_LIBRARIES, the libraries to link against to use FREETYPE.
+# FREETYPE_FOUND, If false, do not try to use FREETYPE.
+
+# also defined, but not for general use are
+# FREETYPE_LIBRARY, where to find the FREETYPE library.
+
+find_path(FREETYPE_INCLUDE_DIR NAMES ft2build.h PATHS ${CONAN_INCLUDE_DIRS_FREETYPE})
+find_library(FREETYPE_LIBRARY NAMES ${CONAN_LIBS_FREETYPE} PATHS ${CONAN_LIB_DIRS_FREETYPE})
+
+MESSAGE("** FREETYPE ALREADY FOUND BY CONAN!")
+SET(FREETYPE_FOUND TRUE)
+MESSAGE("** FOUND FREETYPE:  ${FREETYPE_LIBRARY}")
+MESSAGE("** FOUND FREETYPE INCLUDE:  ${FREETYPE_INCLUDE_DIR}")
+
+set(FREETYPE_INCLUDE_DIRS ${ZLIB_INCLUDE_DIR})
+set(FREETYPE_LIBRARIES ${ZLIB_LIBRARY})
+
+mark_as_advanced(FREETYPE_LIBRARY FREETYPE_INCLUDE_DIR)
+
