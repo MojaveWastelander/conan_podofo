@@ -825,18 +825,11 @@ void FontSubsetTest( PdfPainter* pPainter, PdfPage* pPage, PdfDocument* pDocumen
 int main( int argc, char* argv[] ) 
 {
     PdfMemDocument  writer;
-    //PdfStreamedDocument  writer ( argv[1], ePdfVersion_1_5, &PdfEncrypt( "dominik", "owner" ) );
     PdfPage*        pPage;
     PdfPainter      painter;
     PdfPainterMM    painterMM;
     PdfOutlines*    outlines;
     PdfOutlineItem* pRoot;
-
-    if( argc != 2 )
-    {
-        printf("Usage: CreationTest [output_filename]\n");
-        return 0;
-    }
 
     printf("This test tests the PdfWriter and PdfDocument classes.\n");
     printf("It creates a new PdfFile from scratch.\n");
@@ -958,7 +951,7 @@ int main( int argc, char* argv[] )
 
     //xTEST_SAFE_OP( writer.AttachFile( PdfFileSpec("../../podofo/test/CreationTest/CreationTest.cpp", true, &writer ) ) );
 
-    TEST_SAFE_OP( writer.Write( argv[1] ) );
+    TEST_SAFE_OP( writer.Write( "test.pdf" ) );
     //TEST_SAFE_OP( writer.Close() );
 
 #ifdef TEST_MEM_BUFFER
